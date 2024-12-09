@@ -1,0 +1,36 @@
+<header class="navbar mb-5">
+	<div
+		class="bg-white py-3 px-3 lg:px-4 xl:px-8 shadow-3 flex align-items-center justify-content-between relative"
+	>
+		<div class="xl:pl-1">
+			<h2>Banco de Proveedores</h2>
+		</div>
+		<div
+			class="flex align-items-center justify-content-end xl:pr-7"
+			(click)="profileOP.toggle($event)"
+		>
+			<div class="flex flex-order-1 sm:flex-order-0">
+				<p-avatar
+					icon="pi pi-user"
+					styleClass="mr-2"
+					size="large"
+					shape="circle"
+				></p-avatar>
+			</div>
+			<div
+				class="flex flex-order-0 sm:flex-order-1 flex-column hidden md:block px-3"
+			>
+				<span class="font-semibold text-base text-800 hidden md:block">
+					{{ name }}
+				</span>
+			</div>
+		</div>
+	</div>
+	<p-overlayPanel #profileOP>
+		<p-menu [model]="profileOpItems"></p-menu>
+	</p-overlayPanel>
+</header>
+
+<div class="content xl:px-8">
+	<router-outlet></router-outlet>
+</div>

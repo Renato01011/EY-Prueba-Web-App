@@ -1,0 +1,264 @@
+<p-card>
+	<div class="flex justify-content-between flex-wrap align-items-center">
+		<h2 class="flex align-items-center justify-content-center">
+			Proveedores
+		</h2>
+		<button
+			pButton
+			class="flex align-items-center justify-content-center newSupplierButton"
+			style="align-items: center !important"
+			label="Añadir Nuevo Proveedor"
+			(click)="AddSupplier()"
+		></button>
+	</div>
+
+	<p-table
+		#dt
+		[columns]="cols"
+		[value]="suppliers"
+		[paginator]="true"
+		[rows]="10"
+		[showCurrentPageReport]="true"
+		responsiveLayout="scroll"
+		currentPageReportTemplate="Mostrando desde {first} a {last} de {totalRecords} entradas"
+		[rowsPerPageOptions]="[10, 25, 50]"
+	>
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar por palabra clave" />
+                </span>
+            </div>
+        </ng-template>
+		<ng-template pTemplate="header" let-columns>
+			<tr>
+				<th *ngFor="let col of columns" pSortableColumn="{{col.field}}">
+					{{ col.header }}
+                    <p-sortIcon field="{{col.field}}"></p-sortIcon>
+				</th>
+				<th></th>
+			</tr>
+		</ng-template>
+		<ng-template
+			pTemplate="body"
+			let-rowData
+			let-columns="columns"
+			let-rowIndex="rowIndex"
+		>
+			<tr [pSelectableRow]="rowData">
+				<td *ngFor="let col of columns" >
+					{{ rowData[col.field] }}
+				</td>
+				<td>
+					<button
+						pButton
+						pRipple
+						type="button"
+						icon="pi pi-ellipsis-v"
+						class="p-button-rounded p-button-secondary p-button-text"
+						(click)="
+							ToggleOverlayPanelId(rowIndex);
+							moreOptions.toggle($event)
+						"
+					></button>
+				</td>
+				<p-overlayPanel #moreOptions>
+					<p-menu [model]="moreOptionsOP"></p-menu>
+				</p-overlayPanel>
+			</tr>
+		</ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5">No se encontraron proveedores.</td>
+            </tr>
+        </ng-template>
+	</p-table>
+</p-card>
+
+<p-dialog
+	[(visible)]="screeningDialog"
+	[breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+	[style]="{ 'width': '90vw', 'min-height': '50vw' }"
+	[draggable]="false"
+	[resizable]="false"
+	[modal]="true"
+>
+	<ng-template pTemplate="header">
+		<div class="flex align-items-center w-full">
+			<span class="text-lg md:text-xl font-semibold text-800">
+				Elige la página donde quisieras buscar a este proveedor.
+			</span>
+		</div>
+	</ng-template>
+	<div class="w-full flex flex-column align-items-center">
+		<p-tabView class="w-full">
+			<p-tabPanel header="Offshore Leaks">
+				<button
+					pButton
+					class="w-full newSupplierButton"
+					label="Obtener Data"
+					(click)="CrossReferenceOffshore()"
+                    style="margin-bottom: 20px;"
+				></button>
+				<p-table
+					#dt1
+					[columns]="colsOffshore"
+					[value]="offshore"
+					[paginator]="true"
+					[rows]="10"
+					[showCurrentPageReport]="true"
+					responsiveLayout="scroll"
+					currentPageReportTemplate="Mostrando desde {first} a {last} de {totalRecords} entradas"
+				>
+                    <ng-template pTemplate="caption">
+                        <div class="flex">
+                            <span class="p-input-icon-left ml-auto">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" (input)="dt1.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar por palabra clave" />
+                            </span>
+                        </div>
+                    </ng-template>
+					<ng-template pTemplate="header" let-columns>
+						<tr>
+							<th *ngFor="let col of columns" pSortableColumn="{{col.field}}">
+                                {{ col.header }}
+                                <p-sortIcon field="{{col.field}}"></p-sortIcon>
+                            </th>
+							<th></th>
+						</tr>
+					</ng-template>
+					<ng-template
+						pTemplate="body"
+						let-rowData
+						let-columns="columns"
+						let-rowIndex="rowIndex"
+					>
+						<tr [pSelectableRow]="rowData">
+							<td *ngFor="let col of columns">
+								{{ rowData[col.field] }}
+							</td>
+						</tr>
+					</ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="5">No se encontraron.</td>
+                        </tr>
+                    </ng-template>
+				</p-table>
+			</p-tabPanel>
+			<p-tabPanel header="The World Bank">
+				<button
+					pButton
+					class="w-full newSupplierButton"
+					label="Obtener Data"
+					(click)="CrossReferenceWorldBank()"
+                    style="margin-bottom: 20px;"
+				></button>
+                <p-table
+					#dt2
+					[columns]="colsWorldBank"
+					[value]="worldBank"
+					[paginator]="true"
+					[rows]="10"
+					[showCurrentPageReport]="true"
+					responsiveLayout="scroll"
+					currentPageReportTemplate="Mostrando desde {first} a {last} de {totalRecords} entradas"
+				>
+                    <ng-template pTemplate="caption">
+                        <div class="flex">
+                            <span class="p-input-icon-left ml-auto">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar por palabra clave" />
+                            </span>
+                        </div>
+                    </ng-template>
+					<ng-template pTemplate="header" let-columns>
+						<tr>
+							<th *ngFor="let col of columns">
+								{{ col.header }}
+							</th>
+							<th></th>
+						</tr>
+					</ng-template>
+					<ng-template
+						pTemplate="body"
+						let-rowData
+						let-columns="columns"
+						let-rowIndex="rowIndex"
+					>
+						<tr [pSelectableRow]="rowData">
+							<td *ngFor="let col of columns">
+								{{ rowData[col.field] }}
+							</td>
+						</tr>
+					</ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="5">No se encontraron.</td>
+                        </tr>
+                    </ng-template>
+				</p-table>
+			</p-tabPanel>
+			<p-tabPanel header="OFAC">
+				<button
+					pButton
+					class="w-full newSupplierButton"
+					label="Obtener Data"
+					(click)="CrossReferenceOFAC()"
+                    style="margin-bottom: 20px;"
+				></button>
+                <p-table
+					#dt3
+					[columns]="colsOFAC"
+					[value]="OFAC"
+					[paginator]="true"
+					[rows]="10"
+					[showCurrentPageReport]="true"
+					responsiveLayout="scroll"
+					currentPageReportTemplate="Mostrando desde {first} a {last} de {totalRecords} entradas"
+				>
+                    <ng-template pTemplate="caption">
+                        <div class="flex">
+                            <span class="p-input-icon-left ml-auto">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" (input)="dt3.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar por palabra clave" />
+                            </span>
+                        </div>
+                    </ng-template>
+					<ng-template pTemplate="header" let-columns>
+						<tr>
+							<th *ngFor="let col of columns">
+								{{ col.header }}
+							</th>
+							<th></th>
+						</tr>
+					</ng-template>
+					<ng-template
+						pTemplate="body"
+						let-rowData
+						let-columns="columns"
+						let-rowIndex="rowIndex"
+					>
+						<tr [pSelectableRow]="rowData">
+							<td *ngFor="let col of columns">
+								{{ rowData[col.field] }}
+							</td>
+						</tr>
+					</ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="5">No se encontraron.</td>
+                        </tr>
+                    </ng-template>
+				</p-table>
+			</p-tabPanel>
+		</p-tabView>
+	</div>
+</p-dialog>
+
+<p-confirmDialog
+	[style]="{ width: '20vw' }"
+	[baseZIndex]="10000"
+	rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>

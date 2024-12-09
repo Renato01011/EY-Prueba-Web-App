@@ -1,0 +1,54 @@
+<div class="w-fullm m-0 flex grid" [style]="{ height: '100vh' }">
+	<div class="w-full p-0 col flex align-items-center justify-content-center">
+		<div class="w-full m-4 flex align-items-center justify-content-center">
+			<div [style]="{ width: '75%' }">
+				<div class="mb-5">
+					<h2>Banco de Proveedores</h2>
+				</div>
+				<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+					<h2 class="logInTextHeader">Inicio de sesión</h2>
+					<h1 class="logInSubHeader mb-5">Inicia sesión</h1>
+					<p class="logInSubSubHeader mb-1">Usuario</p>
+					<input
+						pInputText
+						placeholder="Nombre de usuario"
+						class="w-full"
+						formControlName="username"
+						[ngClass]="{
+							'ng-invalid ng-dirty':
+								isValidField('username') || invalidCredentials
+						}"
+					/>
+					<p class="logInSubSubHeader mb-1">Contraseña</p>
+					<p-password
+						[toggleMask]="true"
+						placeholder="Contraseña"
+						class="w-full"
+						styleClass="w-full p-password p-component p-inputwrapper p-input-icon-right"
+						inputStyleClass="w-full"
+						formControlName="password"
+						[ngClass]="{
+							'ng-invalid ng-dirty':
+								isValidField('password') || invalidCredentials
+						}"
+					></p-password>
+					<p class="m-4 ml-0 forgotPasswordText">
+						Olvidé mi contraseña
+					</p>
+					<button
+						pButton
+						pRipple
+						type="submit"
+						label="Iniciar sesión"
+						class="logInButton p-button-success w-full"
+					></button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div
+		class="surface-100 p-0 col flex align-items-center justify-content-center"
+	>
+		<p-image class="w-auto" src="./assets/images/map.png"></p-image>
+	</div>
+</div>

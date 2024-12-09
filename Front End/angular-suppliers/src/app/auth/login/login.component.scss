@@ -1,0 +1,52 @@
+.p-password-input {
+	width: 100%;
+}
+
+.logInTextHeader {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 28px;
+	color: #101828;
+}
+
+.logInSubHeader {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: #667085;
+}
+
+.logInSubSubHeader {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 20px;
+	color: #344054;
+}
+
+.forgotPasswordText {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 20px;
+	color: #0b85c3;
+}
+
+.logInButton {
+	//width: 87px;
+	height: 40px;
+	border-radius: 8px;
+	background-color: #009688;
+	border-color: #009688;
+
+	&:enabled:hover {
+		background: #007d7c;
+		border-color: #007d7c;
+	}
+}

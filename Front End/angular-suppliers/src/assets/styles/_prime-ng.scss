@@ -1,0 +1,44 @@
+@import "~primeng/resources/primeng.min.css";
+@import "~primeicons/primeicons.css";
+@import "~primeng/resources/themes/tailwind-light/theme.css";
+
+$sm: 600px;
+$md: 960px;
+$lg: 1280px;
+$xl: 1620px;
+@import "~primeflex/primeflex.scss";
+
+.back-icon-btn {
+  @include styleclass(
+    "flex align-items-center justify-content-center cursor-pointer border-none surface-section hover:bg-white-alpha-10 border-circle w-2rem h-2rem hover:shadow-2 transition-colors transition-duration-150 text-500 hover:text-700"
+  );
+}
+
+.back-icon-txt-btn {
+  @include styleclass(
+    "flex align-items-center justify-content-center cursor-pointer surface-section hover:bg-white-alpha-10 border-none border-round-md w-max h-2rem px-2 hover:shadow-2 transition-colors transition-duration-150 text-500 hover:text-700"
+  );
+}
+
+.back-icon-abs-btn {
+  @include styleclass(
+    "cursor-pointer bg-white hover:bg-gray-50 text-500 hover:text-800 flex align-items-center justify-content-center w-2rem h-2rem border-none border-circle shadow-2 hover:shadow-5 transition-colors transition-duration-150"
+  );
+}
+
+.pink-icon-btn {
+  @include styleclass(
+    "flex align-items-center justify-content-center cursor-pointer border-none surface-section hover:bg-white-alpha-10 border-circle w-2rem h-2rem hover:shadow-2 transition-colors transition-duration-150"
+  );
+}
+
+.upload-btn {
+  @include styleclass(
+    "flex align-items-center justify-content-center cursor-pointer surface-section hover:surface-hover border-1 border-200 border-round-lg p-3 w-full flex flex-column"
+  );
+}
+
+.upload-btn:focus {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--bdt-dark-blue),
+    0 1px 2px 0 rgba(0, 0, 0, 0);
+}

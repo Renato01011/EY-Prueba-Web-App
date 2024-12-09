@@ -1,0 +1,12 @@
+.newSupplierButton {
+	//width: 87px;
+	height: 40px;
+	border-radius: 8px;
+	background-color: #009688;
+	border-color: #009688;
+
+	&:enabled:hover {
+		background: #007d7c;
+		border-color: #007d7c;
+	}
+}

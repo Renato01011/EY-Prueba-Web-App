@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+/* font-semibold text-base text-800  --- name
+/* text-500 text-sm font-light       --- card detail
+/* font-semibold text-base text-600  --- educ - exp - lang - title
+/* text-500 text-sm font-normal      --- educ - exp - lang
+/* w-12 flex align-items-center surface-hover p-1 border-round-md
+/* py-3 px-3 sm:px-6 xl:px-8
+/*Prime NG*/
+@import "_base";
+@import "_prime-ng";
+@import "_prime-ng-overrides";
+@import "_variables";

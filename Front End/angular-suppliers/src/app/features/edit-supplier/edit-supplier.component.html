@@ -1,0 +1,190 @@
+<form [formGroup]="SupplierForm" (ngSubmit)="AddEditSupplier()">
+	<p-card>
+		<div class="flex justify-content-between flex-wrap align-items-center">
+			<h2 class="flex align-items-center justify-content-center">
+				{{ TitleText }}
+			</h2>
+			<div
+				class="flex align-items-center justify-content-center"
+				style="align-items: center !important"
+			>
+				<button
+					pButton
+					pRipple
+					label="Cancelar"
+					class="m-2 newSupplierButton"
+					(click)="onBack()"
+				></button>
+				<button
+					pButton
+					pRipple
+					type="submit"
+					label="Confirmar"
+					class="m-2 newSupplierButton"
+				></button>
+			</div>
+		</div>
+		<div>
+			<div class="p-4 pt-0">
+				<p-scrollPanel
+					[style]="{
+						width: '100%',
+						height: 'calc(100vh - 500px)',
+						'min-height': '400px'
+					}"
+				>
+					<div>
+						<h3 class="headerText">Detalla a tu proveedor</h3>
+						<p class="subHeaderText">Razón Social</p>
+						<input
+							pInputText
+							placeholder="Razón Social"
+							class="w-full"
+							formControlName="companyName"
+							[ngClass]="{
+								'ng-invalid ng-dirty':
+									isValidField('companyName')
+							}"
+						/>
+						<p class="subHeaderText">Nombre Comercial</p>
+						<input
+							pInputText
+							placeholder="Nombre Comercial"
+							class="w-full"
+							formControlName="name"
+							[ngClass]="{
+								'ng-invalid ng-dirty': isValidField('name')
+							}"
+						/>
+						<p class="subHeaderText">Identificación Tributaria</p>
+						<p-inputNumber
+							id="numTaxIdentification"
+							class="w-full"
+							styleClass="w-full"
+							placeholder="1000"
+							formControlName="taxIdentification"
+							[ngClass]="{
+								'ng-invalid ng-dirty':
+									isValidField('taxIdentification')
+							}"
+							[useGrouping]="false"
+						></p-inputNumber>
+						<small
+							id="numTaxIdentification"
+							class="hidden"
+							[ngClass]="{
+								'p-error block text-left':
+									isValidField('taxIdentification')
+							}"
+							>Este campo debe contener 11 digitos.
+						</small>
+						<p class="subHeaderText">Número Telefónico</p>
+						<p-inputNumber
+							id="numPhoneNumber"
+							class="w-full"
+							styleClass="w-full"
+							placeholder="1000"
+							formControlName="phoneNumber"
+							[ngClass]="{
+								'ng-invalid ng-dirty':
+									isValidField('phoneNumber')
+							}"
+							[useGrouping]="false"
+						></p-inputNumber>
+						<small
+							id="numPhoneNumber"
+							class="hidden"
+							[ngClass]="{
+								'p-error block text-left':
+									isValidField('phoneNumber')
+							}"
+							>Este campo debe contener 9 digitos.
+						</small>
+						<p class="subHeaderText">Correo Electrónico</p>
+						<input
+							pInputText
+							id="textEmail"
+							placeholder="Correo Electrónico"
+							class="w-full"
+							formControlName="email"
+							[ngClass]="{
+								'ng-invalid ng-dirty': isValidField('email')
+							}"
+						/>
+						<small
+							id="textEmail"
+							class="hidden"
+							[ngClass]="{
+								'p-error block text-left': isValidField('email')
+							}"
+							>Este campo debe contener un correo electrónico
+							válido.
+						</small>
+						<p class="subHeaderText">Sitio Web</p>
+						<input
+							id="textWebsite"
+							pInputText
+							placeholder="Sitio Web"
+							class="w-full"
+							formControlName="webSite"
+							[ngClass]="{
+								'ng-invalid ng-dirty': isValidField('webSite')
+							}"
+						/>
+						<small
+							id="textWebsite"
+							class="hidden"
+							[ngClass]="{
+								'p-error block text-left':
+									isValidField('webSite')
+							}"
+							>Este campo debe contener un URL válido.
+						</small>
+						<p class="subHeaderText">Dirección Física</p>
+						<input
+							pInputText
+							placeholder="Dirección Física"
+							class="w-full"
+							formControlName="address"
+							[ngClass]="{
+								'ng-invalid ng-dirty': isValidField('address')
+							}"
+						/>
+						<p class="subHeaderText">País</p>
+						<input
+							pInputText
+							placeholder="País"
+							class="w-full"
+							formControlName="country"
+							[ngClass]="{
+								'ng-invalid ng-dirty': isValidField('country')
+							}"
+						/>
+						<p class="subHeaderText">
+							Facturación Anual en Dólares
+						</p>
+						<p-inputNumber
+							class="w-full"
+							styleClass="w-full"
+							placeholder="$0.00"
+							formControlName="annualBilling"
+							[ngClass]="{
+								'ng-invalid ng-dirty':
+									isValidField('annualBilling')
+							}"
+							mode="currency"
+							currency="USD"
+							locale="en-US"
+						></p-inputNumber>
+					</div>
+				</p-scrollPanel>
+			</div>
+		</div>
+	</p-card>
+</form>
+
+<p-confirmDialog
+	[style]="{ width: '20vw' }"
+	[baseZIndex]="10000"
+	rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>
